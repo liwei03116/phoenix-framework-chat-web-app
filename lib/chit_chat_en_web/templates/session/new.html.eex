@@ -1,0 +1,18 @@
+<div style="max-width: 300px;">
+    <h1>Sign in</h1>
+
+    <%= form_for @conn, Routes.session_path(@conn, :create), [method: :post, as: :user], fn f -> %>
+        <div>
+            <%= text_input f, :email, placeholder: "Email", class: "form-control" %>
+        </div>
+
+        <div>
+            <%= password_input f, :password, placeholder: "Password", class: "form-control" %>
+        </div>
+
+        <div>
+            <%= submit "log in"%>
+        </div>
+    <% end %>
+
+</div>

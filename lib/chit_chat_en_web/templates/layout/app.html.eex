@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Chatting System</title>
+    <link rel="stylesheet" href="<%= Routes.static_path(@conn, "/css/app.css") %>"/>
+  </head>
+  <body>
+    <header>
+      <section class="container">
+        <nav role="navigation">
+          <ul>
+            <%= if @current_user do %>
+              <li><%= link @current_user.name, to: Routes.user_path(@conn, :show, @current_user.id) %></li>
+              <li><%= link "Log out", to: Routes.session_path(@conn, :delete) %></li>
+            <% else %>
+              <li><%= link "Register", to: Routes.user_path(@conn, :new) %></li>
+              <li><%= link "Log In", to: Routes.session_path(@conn, :new) %></li>
+            <% end %>
+          </ul>
+        </nav>
+        <a href="http://localhost:4000" >
+          <img src="https://img.icons8.com/doodle/50/000000/chat.png" alt="Logo"/>
+        </a>
+      </section>
+    </header>
+    <main role="main" class="container">
+      <p class="alert alert-info" role="alert"><%= get_flash(@conn, :info) %></p>
+      <p class="alert alert-danger" role="alert"><%= get_flash(@conn, :error) %></p>
+      <%= render @view_module, @view_template, assigns %>
+    </main>
+    <script>window.userToken = "<%= assigns[:user_id] %>";</script>
+    <script type="text/javascript" src="<%= Routes.static_path(@conn, "/js/app.js") %>"></script>
+  </body>
+</html>

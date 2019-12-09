@@ -1,0 +1,40 @@
+
+  <div>
+    <h2>Room: <%= @room.name%></h2>
+    <%= content_tag :div, id: "room", data: [id: @room.id] do %>
+    <% end %>
+    <ul>
+      <li>
+        <strong>Description:</strong>
+        <%= @room.description %>
+      </li>
+
+    </ul>
+    <div class="row">
+      <div class="column colum-70">
+        <h3>Chat</h3>
+        <div class="panel panel-default chat-room">
+          <div id="msg-container" class="panel-body panel-messages">
+          </div>
+        
+          <div>
+            <textarea id="msg-input" rows="3" placeholder="Chat here..."></textarea>
+            <button id="msg-submit" class="button column" type="submit">Send</button>
+          </div>
+        </div>
+      </div>
+      <div class="column colum-30">
+        <div class="panel panel-default chat-room">
+          <div class="panel-heading">
+            Online Users
+          </div>
+          <div class="panel-body panel-users" id="online-users">
+          </div>
+        </div>
+    </div>
+    </div>
+  </div>
+
+
+<span><%= link "Edit", to: Routes.room_path(@conn, :edit, @room) %></span>
+<span><%= link "Back", to: Routes.room_path(@conn, :index) %></span>
